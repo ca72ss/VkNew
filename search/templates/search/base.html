@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>VkBot</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/search.css' %}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
+        <script src="{% static 'js/index.js' %}"></script>
+    </head>
+    <body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">VkBot</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"></li>
+      <li><a href="/forms">Поиск</a></li>
+      <li><a href="/post_list">Шаблоны сообщенй</a></li>
+      <li><a href="/visualisation">Визуализация</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      {% if user.is_authenticated %}
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+{% block content %}
+{% endblock %}
+</html>

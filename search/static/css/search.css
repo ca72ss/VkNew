@@ -1,0 +1,55 @@
+
+#users {
+			position: relative;
+			width: 950px
+			background-color:#5e81a8
+}
+
+#header{
+			height:40px;
+			width: 960px;
+			background-color:#5e81a8;
+			padding: 0 15px;
+			font-size: 12.5px;
+			margin: 0 auto;'
+}
+
+#top{
+			color:white;
+			text-align:left;
+			padding:7px;
+}
+
+#info{
+
+        	margin: 0 auto;
+        	background-color:transparent;
+        	height:100px;
+
+        	width: 350px;
+}
+
+.photo{
+	   		float:right;
+	        /*background-color:black;
+	        width: 250px;
+	        display:inline-block;*/
+}
+
+#content{
+        	overflow:hidden;
+        	width: 500px;
+        	margin: 0 auto;
+        	background-color:transparent;
+        	padding:20px;
+}
+
+#searchForm {
+			margin:0;
+			width:1000px;
+			float: left;
+}
+
+#field{
+			float:left
+}

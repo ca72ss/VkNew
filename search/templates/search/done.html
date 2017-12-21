@@ -1,0 +1,38 @@
+{% extends 'search/base.html' %}
+{% block content %}
+<script type="text/javascript">
+$('.sendM').click(function(){
+id_user=($(this).attr('id'));
+$.get( "/message",{id:id_user})
+})
+</script>
+{% for u in users %}
+   <div class="row">
+     <div class="col-sm-3">
+       <h3 class = "photo"> <img src={{u.photo_100}}></h3>
+     </div>
+     <div class="col-sm-3">
+       <h3>{{u.first_name}} {{u.last_name}}</h3>
+      </div>
+     <div class="col-sm-3">
+
+ <div class="container">
+   <h2></h2>
+  {% if u.can_write_private_message == 1 %}
+   <button class="sendM", id = "{{u.uid}}">Отправить сообщение </button>
+           {% elif u.can_send_friend_request == 1 %}
+           <button class="sendM", id = "{{u.uid}}"> Добавить в друзья </button>
+           {% else %}
+                <div> Отказано в доступе</div>
+           {% endif %}
+ </div>
+     </div>
+      <div class="col-sm-3">
+     </div>
+   </div>
+ </div>
+{% endfor %}
+
+ </body>
+ </html>
+{% endblock %}
