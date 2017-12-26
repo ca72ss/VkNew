@@ -2,11 +2,21 @@
 <html>
     <head>
         <title>VkBot</title>
+         <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <script src="http://code.jquery.com/jquery-latest.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="http://code.jquery.com/jquery.min.js"></script>
         <link rel="stylesheet" href="{% static 'css/search.css' %}">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
         <script src="{% static 'js/index.js' %}"></script>
@@ -19,9 +29,16 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"></li>
-      <li><a href="/forms">Поиск</a></li>
       <li><a href="/post_list">Шаблоны сообщенй</a></li>
-      <li><a href="/visualisation">Визуализация</a></li>
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Поиск
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/forms">Пересечение групп</a></li>
+          <li><a href="/info_forms">По личной информации друзей</a></li>
+          <li><a href="/visualisation">Визуализация дружеских связей</a></li>
+        </ul>
+      </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       {% if user.is_authenticated %}

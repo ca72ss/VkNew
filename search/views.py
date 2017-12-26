@@ -12,6 +12,7 @@ from .forms import PostForm
 from django.shortcuts import redirect
 import json
 
+
 def login(request):
     return render(request, 'search/login.html')
 
@@ -34,6 +35,10 @@ def create_message(request):
 
 def forms(request):
     return render(request, 'search/forms.html')
+
+
+def info_forms(request):
+    return render(request, 'search/info.html')
 
 
 def get_name(request):
@@ -98,13 +103,13 @@ def intersection(request):
     groups_s = request.session.get('groups_s', '')
     test = groups_s.split(',')
     groups_users = api.groups.getMembers(group_id=test[0],
-                                        fields="photo_100,last_seen,photo_id,has_mobile,universities,last_seen,"
-                                               "photo_id,has_mobile,universities,can_write_private_message,"
-                                               "can_send_friend_request")
-    groups_users2 = api.groups.getMembers(group_id=test[1],
                                          fields="photo_100,last_seen,photo_id,has_mobile,universities,last_seen,"
                                                 "photo_id,has_mobile,universities,can_write_private_message,"
                                                 "can_send_friend_request")
+    groups_users2 = api.groups.getMembers(group_id=test[1],
+                                          fields="photo_100,last_seen,photo_id,has_mobile,universities,last_seen,"
+                                                 "photo_id,has_mobile,universities,can_write_private_message,"
+                                                 "can_send_friend_request")
     group_1 = groups_users['users']
     group_2 = groups_users2['users']
     gu1 = [u['uid'] for u in group_1]
@@ -176,9 +181,40 @@ def get_message(request):
 
 
 def visualisation(request):
-        import vis0
+
         import vis1
         import vis2
         result = json.load(open('miserables.json', 'r'))
         print(result)
         return render(request, 'search/index.html', {'result': result})
+
+
+def info(request):
+    us=[]
+    group_name = ' '
+    at = request.session.get('at', '')
+    session = vk.Session(access_token=at)
+    api = vk.API(session)
+    user_id = request.GET['user_id']
+    phrase = request.GET['about']
+    ids = api.friends.get(user_id=user_id)
+
+
+
+    users = api.users.get(user_ids=ids,
+                          fields='about,activities,books,interests,photo_100,'
+                                 'can_write_private_message,can_send_friend_request')
+    for u in users:
+        try:
+            subscrip = api.users.getSubscriptions(user_id=u['uid'], extended=1, count=200, fields='name')
+        except:
+            pass
+        group_name += (subscrip[0].get('name',''))
+
+        info=u.get('about','')+u.get('activities','')+u.get('books','')+u.get('interests','')
+        all_info=info+group_name
+        print(info)
+        if info.find(phrase) !=-1:
+            us.append(u)
+
+    return render(request, 'search/done.html', {'users': us})

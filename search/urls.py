@@ -18,5 +18,7 @@ urlpatterns = [
     url(r'^post/(?P<pk>\d+)/edit/$', views.post_edit, name='post_edit'),
     url(r'^get_message$', views.get_message, name='get_message'),
     url(r'^visualisation$', views.visualisation, name='visualisation'),
+    url(r'^info_forms$', views.info_forms, name='info_forms'),
+    url(r'^info$', views.info, name='info'),
 
 ]

@@ -13,6 +13,10 @@ class NameForm(forms.Form):
 class Login(forms.Form):
     at = forms.CharField(label = 'at', max_length=1000)
 
+class Info(forms.Form):
+    user_id = forms.CharField(label='user_id', max_length=1000)
+    about = forms.CharField(label='about', max_length=1000)
+
 class PostForm(forms.ModelForm):
 
     class Meta:
