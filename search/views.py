@@ -185,7 +185,7 @@ def visualisation(request):
         import vis1
         import vis2
         result = json.load(open('miserables.json', 'r'))
-        print(result)
+        #print(result)
         return render(request, 'search/index.html', {'result': result})
 
 
