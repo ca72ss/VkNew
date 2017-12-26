@@ -209,10 +209,11 @@ def info(request):
             subscrip = api.users.getSubscriptions(user_id=u['uid'], extended=1, count=200, fields='name')
         except:
             pass
-        group_name += (subscrip[0].get('name',''))
+        for k in subscrip:
+            group_name += (k.get('name',''))
 
-        info=u.get('about','')+u.get('activities','')+u.get('books','')+u.get('interests','')
-        all_info=info+group_name
+        info=u.get('about','')+u.get('activities','')+u.get('books','')+u.get('interests','')+group_name
+        group_name =' '
         print(info)
         if info.find(phrase) !=-1:
             us.append(u)
